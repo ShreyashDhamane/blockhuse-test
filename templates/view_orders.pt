@@ -1,0 +1,33 @@
+<!-- templates/view_orders.pt -->
+<html>
+    <head>
+        <title>View Orders</title>
+        <link rel="stylesheet" href="/static/styles.css">
+    </head>
+    <body>
+        <div class="container">
+            <h1>View Orders</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Symbol</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Order Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Iterate over orders and render rows -->
+                    <tr tal:repeat="order orders">
+                        <td>${order[0]}</td> <!-- Symbol -->
+                        <td>${order[1]}</td> <!-- Price -->
+                        <td>${order[2]}</td> <!-- Quantity -->
+                        <td>${order[3]}</td> <!-- Order Type -->
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+            <a href="/" class="button">Back to Home</a>
+        </div>
+    </body>
+</html>

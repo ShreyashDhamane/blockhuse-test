@@ -1,0 +1,51 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="/static/styles.css">
+    <title>Shreyash Dhamane</title>
+</head>
+<body>
+    <div class="container">
+        <h1 class="homepage-header">Hello, I'm Shreyash Dhamane</h1>
+        <p>
+            I am currently pursuing my MS in Computer Science at NYU with a 4.0 GPA. 
+            During my undergraduate studies, I worked at three startups as an SDE intern for a 
+            total of 3.5 years. Here, I explored a wide variety of technologies while 
+            working on projects, including frontend, backend, mobile application 
+            development, machine learning, CI/CD, and a little bit of DevOps as well. 
+            However, I consider myself more of a backend engineer. I work great in cross-functional environments.
+        </p>
+        <p>
+            I was also promoted to a leadership role during my internship at Aim4U. 
+            I really enjoy participating in tech events, as they are a great way to 
+            meet new people and learn cool technologies. I have participated in 
+            8 hackathons, winning 5 of them, published 5 research papers, and 
+            occasionally participate in startup events or tech meetups.
+        </p>
+        <p>
+            I have production-level experience in the technologies required for the role. 
+            From my past experience, working in innovative and competitive environments 
+            has allowed me to grow both professionally and personally. Growth is important 
+            to me. I live by a simple principle: to be better than yesterday by learning 
+            something new every day.
+        </p>
+        <p>
+            You can check out my other work on my portfolio and LinkedIn:
+            <ul>
+                <li><a href="https://shreyashdhamane.com" target="_blank">Portfolio</a></li>
+                <li><a href="https://www.linkedin.com/in/shreyash-dhamane-006671209/" target="_blank">LinkedIn</a></li>
+            </ul>
+        </p>
+        <p>
+            Looking forward to hearing back soon!
+        </p>
+    </div>
+    <div class="buttons">
+        <a href="/create-order" class="button">Create Order</a>
+        <a href="/view-orders" class="button">View Orders</a>
+    </div>
+</body>
+</html>
