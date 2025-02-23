@@ -2,6 +2,8 @@ from fastapi import APIRouter, Request, Form, HTTPException
 from fastapi.responses import HTMLResponse, RedirectResponse
 from chameleon import PageTemplateFile
 from database.connection import get_db_cursor
+from customsocket.manager import manager  # Import the shared manager instance
+import json
 
 router = APIRouter()
 
@@ -33,6 +35,16 @@ async def submit_order(
                 INSERT INTO orders (symbol, price, quantity, order_type)
                 VALUES (?, ?, ?, ?)
             """, (symbol, price, quantity, order_type))
+        
+        # Broadcast the new order to all WebSocket clients
+        new_order = {
+            "symbol": symbol,
+            "price": price,
+            "quantity": quantity,
+            "order_type": order_type,
+        }
+        await manager.broadcast(json.dumps(new_order))
+        
         return RedirectResponse(url="/view-orders", status_code=303)
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Database error: {str(e)}")
@@ -44,6 +56,7 @@ async def view_orders(request: Request):
         with get_db_cursor() as cursor:
             cursor.execute("SELECT symbol, price, quantity, order_type FROM orders")
             orders = cursor.fetchall()
+        print("Orders from database:", orders)
         template = PageTemplateFile("templates/view_orders.pt")
         content = template(orders=orders)
         return HTMLResponse(content=content)

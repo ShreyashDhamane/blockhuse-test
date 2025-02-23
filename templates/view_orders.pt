@@ -30,4 +30,6 @@
             <a href="/" class="button">Back to Home</a>
         </div>
     </body>
+    <!-- WebSocket script for real-time updates -->
+    <script src="/static/orders.js"></script>
 </html>
