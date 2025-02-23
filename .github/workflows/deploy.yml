@@ -13,9 +13,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Build Docker image
-        run: docker build -t trade-order-service .
-
       - name: SSH and deploy
         uses: appleboy/ssh-action@master
         with:
@@ -23,6 +20,16 @@ jobs:
           username: ubuntu
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
+            # Stop and remove the existing container (if it exists)
             docker stop trade-order-service || true
             docker rm trade-order-service || true
+
+            # Pull the latest code from GitHub
+            cd /blockhouse-test
+            git pull origin main
+
+            # Build the Docker image
+            docker build -t trade-order-service .
+
+            # Run the updated container
             docker run -d -p 80:80 --name trade-order-service trade-order-service
