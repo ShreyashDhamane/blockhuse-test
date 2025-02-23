@@ -14,13 +14,13 @@ class Order(BaseModel):
         return v
 
     @field_validator('price')
-    def price_must_have_two_decimals(cls, v: float) -> float:
-        if round(v, 2) != v:
+    def price_must_be_greater_then_0(cls, v: float) -> float:
+        if v <= 0:
             raise ValueError('Price must have exactly two decimal places')
         return v
 
     @field_validator('quantity')
-    def quantity_must_be_multiple_of_10(cls, v: int) -> int:
-        if v % 10 != 0:
-            raise ValueError('Quantity must be a multiple of 10')
+    def quantity_must_be_greater_then_0(cls, v: int) -> int:
+        if v <= 0:
+            raise ValueError('Quantity must be a greater than 0')
         return v

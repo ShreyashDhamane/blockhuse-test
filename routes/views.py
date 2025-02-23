@@ -66,10 +66,10 @@ async def create_order_form(request: Request):
 # Submit Order route (handles form submission)
 @router.post("/submit-order", summary="Create a new order", description="Create a new order with the provided details.")
 async def submit_order(
-    symbol: str = Form(..., description="The stock symbol (e.g., AAPL).", example="AAPL"),
-    price: float = Form(..., description="The price per unit.", example=150.00),
-    quantity: int = Form(..., description="The number of units.", example=100),
-    order_type: str = Form(..., description="The type of order (buy/sell).", example="buy"),
+    symbol: str = Form(..., description="The stock symbol (e.g., AAPL).", examples=["AAPL"]),
+    price: float = Form(..., description="The price per unit.", examples=[150.00]),
+    quantity: int = Form(..., description="The number of units.", examples=[100]),
+    order_type: str = Form(..., description="The type of order (buy/sell).", examples=["buy"]),
 ):
     """
     Create a new order with the following details:
