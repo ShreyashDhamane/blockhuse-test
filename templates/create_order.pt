@@ -1,4 +1,4 @@
-<!-- templates/create_order.pt -->
+<!-- templates/create_order.html -->
 <html>
     <head>
         <title>Create Order</title>

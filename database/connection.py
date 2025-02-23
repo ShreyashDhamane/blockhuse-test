@@ -10,11 +10,11 @@ def init_db():
         cursor = conn.cursor()
         cursor.execute('''
             CREATE TABLE IF NOT EXISTS orders (
-                id INTEGER PRIMARY KEY,
-                symbol TEXT,
-                price FLOAT,
-                quantity INTEGER,
-                order_type TEXT
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                symbol TEXT NOT NULL CHECK(LENGTH(symbol) <= 5 AND symbol = UPPER(symbol)),
+                price FLOAT NOT NULL CHECK(price > 0),
+                quantity INTEGER NOT NULL CHECK(quantity > 0),
+                order_type TEXT NOT NULL CHECK(order_type IN ('buy', 'sell'))
             )
         ''')
         conn.commit()
