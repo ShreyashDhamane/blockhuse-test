@@ -7,7 +7,14 @@ DATABASE_FILE = "orders.db"
 # Initialize the database
 def init_db():
     with get_db_connection() as conn:
+        
         cursor = conn.cursor()
+        
+        cursor.execute('''
+            DROP TABLE orders
+        ''')
+        
+
         cursor.execute('''
             CREATE TABLE IF NOT EXISTS orders (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
