@@ -25,7 +25,7 @@ jobs:
             docker rm trade-order-service || true
 
             # Pull the latest code from GitHub
-            cd /blockhouse-test
+            cd /home/ubuntu/blockhuse-test
             git pull origin main
 
             # Build the Docker image
