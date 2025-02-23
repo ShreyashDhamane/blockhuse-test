@@ -12,7 +12,7 @@ cursor.execute('''CREATE TABLE IF NOT EXISTS orders
                   (id INTEGER PRIMARY KEY, symbol TEXT, price FLOAT, quantity INTEGER, order_type TEXT)''')
 conn.commit()
 
-# Pydantic model for order
+# Pydantic model for order.
 class Order(BaseModel):
     symbol: str
     price: float
