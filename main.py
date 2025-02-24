@@ -7,6 +7,31 @@ from fastapi.responses import HTMLResponse
 from fastapi.openapi.utils import get_openapi
 app = FastAPI()
 
+
+
+# Initialize the database
+init_db()
+
+# Include routers
+app.include_router(order_router)
+
+# Serve static files
+app.mount("/static", StaticFiles(directory="static"), name="static")
+
+@app.get("/error")
+async def error_page(request: Request):
+    error_message = request.query_params.get("error", "An unknown error occurred.")
+    return HTMLResponse(content=f"""
+        <html>
+            <body>
+                <h1>Error</h1>
+                <p>{error_message}</p>
+                <a href="/">Go back to the homepage</a>
+            </body>
+        </html>
+    """)
+
+
 def custom_openapi():
     if app.openapi_schema:
         return app.openapi_schema
@@ -50,25 +75,3 @@ def custom_openapi():
     return app.openapi_schema
 
 app.openapi = custom_openapi
-
-# Initialize the database
-init_db()
-
-# Include routers
-app.include_router(order_router)
-
-# Serve static files
-app.mount("/static", StaticFiles(directory="static"), name="static")
-
-@app.get("/error")
-async def error_page(request: Request):
-    error_message = request.query_params.get("error", "An unknown error occurred.")
-    return HTMLResponse(content=f"""
-        <html>
-            <body>
-                <h1>Error</h1>
-                <p>{error_message}</p>
-                <a href="/">Go back to the homepage</a>
-            </body>
-        </html>
-    """)

@@ -38,7 +38,7 @@ The application is deployed on **AWS EC2**. You can access it here:
 ## Technologies Used
 
 - **Backend**: FastAPI
-- **Frontend**: HTML (Chameleon templates)
+- **Frontend**: HTML (Jinja2 templates)
 - **Database**: SQLite (for simplicity, can be replaced with any other database)
 - **Real-Time Communication**: WebSocket
 - **Containerization**: Docker

@@ -18,12 +18,14 @@
                 </thead>
                 <tbody>
                     <!-- Iterate over orders and render rows -->
-                    <tr tal:repeat="order orders">
-                        <td>${order[0]}</td> <!-- Symbol -->
-                        <td>${order[1]}</td> <!-- Price -->
-                        <td>${order[2]}</td> <!-- Quantity -->
-                        <td>${order[3]}</td> <!-- Order Type -->
+                    {% for order in orders %}
+                    <tr>
+                        <td>{{ order[0] }}</td> <!-- Symbol -->
+                        <td>{{ order[1] }}</td> <!-- Price -->
+                        <td>{{ order[2] }}</td> <!-- Quantity -->
+                        <td>{{ order[3] }}</td> <!-- Order Type -->
                     </tr>
+                    {% endfor %}
                 </tbody>
             </table>
             <br>

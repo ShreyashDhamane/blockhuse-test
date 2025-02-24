@@ -4,9 +4,9 @@ from models.order import Order
 from customsocket.manager import manager  # Import the shared manager instance
 import json
 from fastapi.responses import HTMLResponse, RedirectResponse
-from chameleon import PageTemplateFile
 import re
-
+from fastapi.templating import Jinja2Templates
+templates = Jinja2Templates(directory="templates")
 router = APIRouter()
 
 @router.get("/", response_class=HTMLResponse, summary="Render the Home Page", description="This endpoint loads and renders the `index.pt` template, which contains the homepage content.")
@@ -26,10 +26,7 @@ async def homepage(request: Request):
     try:
         
         # Load and render the template
-        template = PageTemplateFile("templates/index.pt")
-        content = template()
-        return HTMLResponse(content=content)
-    
+        return templates.TemplateResponse("index.pt", {"request": request})
     except FileNotFoundError:
         raise HTTPException(status_code=404, detail="Homepage template not found.")
     
@@ -53,9 +50,7 @@ async def create_order_form(request: Request):
     """
     try:
         # Load and render the template
-        template = PageTemplateFile("templates/create_order.pt")
-        content = template()
-        return HTMLResponse(content=content)
+        return templates.TemplateResponse("create_order.pt", {"request": request})
     
     except FileNotFoundError:
         raise HTTPException(status_code=404, detail="Create Order template not found.")
@@ -118,9 +113,7 @@ async def view_orders(request: Request):
         with get_db_cursor() as cursor:
             cursor.execute("SELECT symbol, price, quantity, order_type FROM orders")
             orders = cursor.fetchall()
-        template = PageTemplateFile("templates/view_orders.pt")
-        content = template(orders=orders)
-        return HTMLResponse(content=content)
+        return templates.TemplateResponse("view_orders.pt", {"request": request, "orders": orders})
     
     except FileNotFoundError:
         raise HTTPException(status_code=404, detail="Create Order template not found.")

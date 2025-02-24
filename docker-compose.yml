@@ -4,5 +4,3 @@ services:
     image: trade-order-service
     ports:
       - "80:80"
-    volumes:
-      - .:/app

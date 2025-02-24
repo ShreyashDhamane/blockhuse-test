@@ -16,7 +16,7 @@ def init_db():
         
 
         cursor.execute('''
-            CREATE TABLE orders (
+            CREATE TABLE IF NOT EXISTS orders (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 symbol TEXT NOT NULL CHECK(LENGTH(symbol) <= 5 AND symbol = UPPER(symbol)),
                 price FLOAT NOT NULL CHECK(price > 0),
