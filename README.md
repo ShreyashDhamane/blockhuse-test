@@ -91,7 +91,7 @@ uvicorn main:app --host 0.0.0.0 --port 80 --reload
 
 The application will be available at: http://localhost:80
 
-API Documentation: http://localhost:8000/docs
+API Documentation: http://localhost:80/docs
 
 WebSocket URL: ws://localhost:8000/ws/orders
 
